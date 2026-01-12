@@ -515,9 +515,9 @@ A: Edit the transaction to balance amounts, or split into multiple transactions.
 
 ### Support Channels
 
-- **GitHub Issues:** https://github.com/norelinorth/statement_importer/issues
-- **GitHub Discussions:** https://github.com/norelinorth/statement_importer/discussions
-- **Email Support:** https://github.com/norelinorth/statement_importer/issues
+- **GitHub Issues:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues
+- **GitHub Discussions:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer/discussions
+- **Email Support:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues
 
 ### Reporting Bugs
 
@@ -565,4 +565,4 @@ Open an issue on GitHub with:
 **Last Updated:** January 11, 2025
 **Maintained by:** Noreli North
 
-For latest documentation, visit: https://github.com/norelinorth/statement_importer
+For latest documentation, visit: https://github.com/norelinorth/norelinorth_brokerage_statement_importer

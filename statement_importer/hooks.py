@@ -2,7 +2,7 @@ app_name = "statement_importer"
 app_title = "Noreli North Brokerage Statement Importer"
 app_publisher = "Noreli North"
 app_description = "Automatic Journal Entry posting from brokerage statement PDFs (Interactive Brokers, Charles Schwab, Fidelity, etc.)"
-app_email = "https://github.com/norelinorth/statement_importer/issues"
+app_email = "https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues"
 app_license = "mit"
 app_version = "1.3.8"
 

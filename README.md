@@ -8,8 +8,8 @@
 [![ERPNext v15](https://img.shields.io/badge/ERPNext-v15.81.0+-green.svg)](https://erpnext.com)
 [![ERPNext v16](https://img.shields.io/badge/ERPNext-v16.0.0+-green.svg)](https://erpnext.com)
 [![Standards Compliance](https://img.shields.io/badge/Frappe%20Standards-100%25-brightgreen.svg)]()
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/norelinorth/statement_importer/pulls)
-[![CI](https://img.shields.io/github/actions/workflow/status/norelinorth/statement_importer/ci.yml?branch=main)](https://github.com/norelinorth/statement_importer/actions/workflows/ci.yml)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/norelinorth/norelinorth_brokerage_statement_importer/pulls)
+[![CI](https://img.shields.io/github/actions/workflow/status/norelinorth/norelinorth_brokerage_statement_importer/ci.yml?branch=main)](https://github.com/norelinorth/norelinorth_brokerage_statement_importer/actions/workflows/ci.yml)
 
 ## Overview
 
@@ -192,8 +192,8 @@ This app is built with **100% Frappe/ERPNext standards compliance**:
 
 ### Getting Help
 
-- **Issues:** [GitHub Issues](https://github.com/norelinorth/statement_importer/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/norelinorth/statement_importer/discussions)
+- **Issues:** [GitHub Issues](https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/norelinorth/norelinorth_brokerage_statement_importer/discussions)
 
 ### Reporting Bugs
 
@@ -294,4 +294,4 @@ See [LICENSE](license.txt) for full license text.
 
 **Made with ❤️ by Noreli North**
 
-For support, please use [GitHub Issues](https://github.com/norelinorth/statement_importer/issues)
+For support, please use [GitHub Issues](https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues)

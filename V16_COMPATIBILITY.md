@@ -33,7 +33,7 @@ Statement Importer v1.3.8 is fully compatible with both **Frappe Framework v15**
 - ✅ Linter checks on all branches
 
 **CI Status:**
-- [![CI](https://github.com/norelinorth/statement_importer/actions/workflows/ci.yml/badge.svg)](https://github.com/norelinorth/statement_importer/actions/workflows/ci.yml)
+- [![CI](https://github.com/norelinorth/norelinorth_brokerage_statement_importer/actions/workflows/ci.yml/badge.svg)](https://github.com/norelinorth/norelinorth_brokerage_statement_importer/actions/workflows/ci.yml)
 
 ### Test Coverage
 - ✅ PDF extraction and parsing
@@ -179,14 +179,14 @@ jobs:
 
 ```bash
 cd frappe-bench
-bench get-app https://github.com/norelinorth/statement_importer.git --branch main
+bench get-app https://github.com/norelinorth/norelinorth_brokerage_statement_importer.git --branch main
 ```
 
 ### For Frappe v16
 
 ```bash
 cd frappe-bench
-bench get-app https://github.com/norelinorth/statement_importer.git --branch version-16
+bench get-app https://github.com/norelinorth/norelinorth_brokerage_statement_importer.git --branch version-16
 ```
 
 **Note:** Both branches use the same code - branch selection determines CI test version only.
@@ -205,7 +205,7 @@ bench get-app https://github.com/norelinorth/statement_importer.git --branch ver
 
 ```bash
 cd frappe-bench
-bench get-app https://github.com/norelinorth/statement_importer.git --branch version-16 --resolve-deps
+bench get-app https://github.com/norelinorth/norelinorth_brokerage_statement_importer.git --branch version-16 --resolve-deps
 bench migrate
 ```
 
@@ -320,7 +320,7 @@ When contributing, ensure:
 ## Support
 
 For v16-specific issues:
-- [GitHub Issues](https://github.com/norelinorth/statement_importer/issues)
+- [GitHub Issues](https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues)
 - Label: `version-16`
 
 ---

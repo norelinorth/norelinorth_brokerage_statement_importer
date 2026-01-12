@@ -769,9 +769,9 @@ frappe.call({
 
 For API questions or issues:
 
-- **GitHub Issues:** https://github.com/norelinorth/statement_importer/issues
-- **Discussions:** https://github.com/norelinorth/statement_importer/discussions
-- **Email:** https://github.com/norelinorth/statement_importer/issues
+- **GitHub Issues:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues
+- **Discussions:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer/discussions
+- **Email:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues
 
 ---
 
