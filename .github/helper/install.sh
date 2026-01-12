@@ -23,11 +23,8 @@ sudo apt-get install -y \
     libssl-dev \
     mariadb-client
 
-# Install wkhtmltopdf
-echo -e "${YELLOW}Installing wkhtmltopdf...${NC}"
-wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
-sudo apt install -y ./wkhtmltox_0.12.6-1.focal_amd64.deb
-rm wkhtmltox_0.12.6-1.focal_amd64.deb
+# Skip wkhtmltopdf installation for CI (not needed for tests, has libssl1.1 dependency issues on Ubuntu 24.04)
+echo -e "${YELLOW}Skipping wkhtmltopdf (not required for CI tests)...${NC}"
 
 # Install bench
 echo -e "${YELLOW}Installing bench...${NC}"
