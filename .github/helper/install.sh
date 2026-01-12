@@ -52,9 +52,9 @@ bench get-app --branch ${BRANCH_TO_CLONE} erpnext
 echo -e "${YELLOW}Getting statement_importer app...${NC}"
 bench get-app statement_importer ${GITHUB_WORKSPACE}
 
-# Install pdfplumber dependency
-echo -e "${YELLOW}Installing pdfplumber...${NC}"
-./env/bin/pip install pdfplumber
+# Install dependencies
+echo -e "${YELLOW}Installing Python dependencies...${NC}"
+./env/bin/pip install pdfplumber coverage
 
 # Create test site
 echo -e "${YELLOW}Creating test site...${NC}"
