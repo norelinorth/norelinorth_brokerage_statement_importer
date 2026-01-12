@@ -1,14 +1,27 @@
-app_name = "ib_importer"
-app_title = "IB Statement Importer"
+app_name = "statement_importer"
+app_title = "Noreli North Brokerage Statement Importer"
 app_publisher = "Noreli North"
-app_description = "Automatic Journal Entry posting from Interactive Brokers PDF statements"
-app_email = "info@noreli-north.com"
+app_description = "Automatic Journal Entry posting from brokerage statement PDFs (Interactive Brokers, Charles Schwab, Fidelity, etc.)"
+app_email = "https://github.com/norelinorth/statement_importer/issues"
 app_license = "mit"
+app_version = "1.3.8"
 
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["frappe", "erpnext"]
+
+# Fixtures (for loading default data)
+fixtures = [
+	{
+		"dt": "Statement Provider",
+		"filters": [["provider_name", "in", ["Interactive Brokers", "Charles Schwab", "Fidelity"]]]
+	},
+	{
+		"dt": "Workspace",
+		"filters": [["name", "=", "Statement Importer"]]
+	}
+]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [

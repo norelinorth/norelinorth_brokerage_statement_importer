@@ -5,3 +5,32 @@
 tags
 node_modules
 __pycache__
+
+# Internal development and audit documents (PRIVATE - not for public/marketplace)
+*AUDIT*.md
+*ISSUES*.md
+*FIXES*.md
+*SUMMARY*.md
+*COMPLIANCE*.md
+*COMPLETION*.md
+*ROADMAP*.md
+*REMOVAL*.md
+PHASE*.md
+BUG_FIX*.md
+RELEASE_NOTES*.md
+INTEGRATION_ANALYSIS.md
+STANDARDS_COMPLIANCE*.md
+FALLBACK*.md
+REFACTORING*.md
+FIFTH_AUDIT*.md
+COMPREHENSIVE_AUDIT*.md
+FRAPPE_STANDARDS*.md
+
+# Internal guides (PRIVATE)
+TESTING_GUIDE.md
+SCREENSHOTS_GUIDE.md
+MARKETPLACE_SUBMISSION.md
+
+# Test files (PRIVATE)
+test_*.py
+RUN_TESTS.sh

@@ -1,0 +1,109 @@
+[
+ {
+  "doctype": "Statement Provider",
+  "name": "Interactive Brokers",
+  "provider_name": "Interactive Brokers",
+  "enabled": 1,
+  "prompt_template": "You are an expert accountant analyzing an Interactive Brokers brokerage statement to extract financial transactions for accounting purposes.\n\nCONTEXT:\n- Company: {company}\n- Statement Period: {statement_period}\n- Statement Date Range: {import_date}\n\nPDF TEXT (first 3000 characters):\n{text}\n\nTABLES FOUND:\n{tables}\n\nTASK:\nExtract ALL financial transactions from this Interactive Brokers statement. Look for:\n1. Trades (buy/sell of stocks, options, futures)\n2. Dividends received\n3. Interest earned/paid\n4. Fees and commissions\n5. Deposits and withdrawals\n6. Currency conversions\n7. Tax withholdings\n\nFor EACH transaction, determine:\n- Transaction date\n- Description (what happened)\n- Amount\n- Currency\n- Account classification (use standard accounting accounts)\n\nRESPONSE FORMAT (JSON ONLY):\nReturn a JSON array of transactions. Each transaction must have:\n{\n  \"date\": \"YYYY-MM-DD\",\n  \"description\": \"Clear description of transaction\",\n  \"currency\": \"USD\" (or other currency),\n  \"account_debit\": \"Account name for debit\",\n  \"debit_amount\": 0.00,\n  \"account_credit\": \"Account name for credit\",\n  \"credit_amount\": 0.00\n}\n\nEXAMPLE OUTPUT:\n[\n  {\n    \"date\": \"2026-01-15\",\n    \"description\": \"Purchased 100 shares AAPL @ $150\",\n    \"currency\": \"USD\",\n    \"account_debit\": \"Investments - Securities\",\n    \"debit_amount\": 15000.00,\n    \"account_credit\": \"Cash - IB Account\",\n    \"credit_amount\": 15000.00\n  },\n  {\n    \"date\": \"2026-01-15\",\n    \"description\": \"Commission on AAPL purchase\",\n    \"currency\": \"USD\",\n    \"account_debit\": \"Brokerage Fees\",\n    \"debit_amount\": 1.00,\n    \"account_credit\": \"Cash - IB Account\",\n    \"credit_amount\": 1.00\n  }\n]\n\nCRITICAL INSTRUCTIONS:\n1. Return ONLY the JSON array - no explanations, no markdown code fences\n2. Ensure EVERY transaction balances (debit_amount = credit_amount)\n3. Use standard accounting account names\n4. Include ALL transactions found in the statement\n5. Be precise with dates and amounts\n6. If unsure about account classification, use generic \"Other Income\" or \"Other Expense\"\n\nNow extract ALL transactions as JSON:",
+  "accounting_rules": [
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Buy Stock",
+    "enabled": 1,
+    "debit_account_template": "Investments - Securities",
+    "credit_account_template": "Cash - {provider} Account",
+    "description_template": "Purchased {quantity} shares {symbol} @ {price}"
+   },
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Sell Stock",
+    "enabled": 1,
+    "debit_account_template": "Cash - {provider} Account",
+    "credit_account_template": "Investments - Securities",
+    "description_template": "Sold {quantity} shares {symbol} @ {price}"
+   },
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Dividend",
+    "enabled": 1,
+    "debit_account_template": "Cash - {provider} Account",
+    "credit_account_template": "Dividend Income",
+    "description_template": "Dividend from {symbol}"
+   },
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Commission Fee",
+    "enabled": 1,
+    "debit_account_template": "Brokerage Fees",
+    "credit_account_template": "Cash - {provider} Account",
+    "description_template": "Commission on {symbol} trade"
+   },
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Interest Earned",
+    "enabled": 1,
+    "debit_account_template": "Cash - {provider} Account",
+    "credit_account_template": "Interest Income",
+    "description_template": "Interest earned"
+   },
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Deposit",
+    "enabled": 1,
+    "debit_account_template": "Cash - {provider} Account",
+    "credit_account_template": "Bank - Transfer",
+    "description_template": "Deposit to {provider}"
+   },
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Withdrawal",
+    "enabled": 1,
+    "debit_account_template": "Bank - Transfer",
+    "credit_account_template": "Cash - {provider} Account",
+    "description_template": "Withdrawal from {provider}"
+   }
+  ]
+ },
+ {
+  "doctype": "Statement Provider",
+  "name": "Charles Schwab",
+  "provider_name": "Charles Schwab",
+  "enabled": 1,
+  "prompt_template": "You are an expert accountant analyzing a Charles Schwab brokerage statement to extract financial transactions for accounting purposes.\n\nCONTEXT:\n- Company: {company}\n- Statement Period: {statement_period}\n- Statement Date Range: {import_date}\n\nPDF TEXT (first 3000 characters):\n{text}\n\nTABLES FOUND:\n{tables}\n\nTASK:\nExtract ALL financial transactions from this Charles Schwab statement. Look for trades, dividends, fees, deposits, and withdrawals.\n\nRESPONSE FORMAT (JSON ONLY):\nReturn a JSON array of transactions with date, description, currency, account_debit, debit_amount, account_credit, credit_amount.\n\nNow extract ALL transactions as JSON:",
+  "accounting_rules": [
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Buy Stock",
+    "enabled": 1,
+    "debit_account_template": "Investments - Securities",
+    "credit_account_template": "Cash - Schwab Account",
+    "description_template": "Purchased {quantity} shares {symbol}"
+   },
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Sell Stock",
+    "enabled": 1,
+    "debit_account_template": "Cash - Schwab Account",
+    "credit_account_template": "Investments - Securities",
+    "description_template": "Sold {quantity} shares {symbol}"
+   }
+  ]
+ },
+ {
+  "doctype": "Statement Provider",
+  "name": "Fidelity",
+  "provider_name": "Fidelity",
+  "enabled": 1,
+  "prompt_template": "You are an expert accountant analyzing a Fidelity brokerage statement to extract financial transactions for accounting purposes.\n\nCONTEXT:\n- Company: {company}\n- Statement Period: {statement_period}\n\nPDF TEXT:\n{text}\n\nTABLES FOUND:\n{tables}\n\nExtract ALL financial transactions as a JSON array with date, description, currency, account_debit, debit_amount, account_credit, credit_amount.",
+  "accounting_rules": [
+   {
+    "doctype": "Statement Accounting Rule",
+    "transaction_type": "Buy Stock",
+    "enabled": 1,
+    "debit_account_template": "Investments - Securities",
+    "credit_account_template": "Cash - Fidelity Account",
+    "description_template": "Purchased {quantity} shares {symbol}"
+   }
+  ]
+ }
+]

@@ -1,10 +1,10 @@
 [project]
-name = "ib_importer"
+name = "statement_importer"
 authors = [
-    { name = "Noreli North", email = "info@noreli-north.com"}
+    { name = "Noreli North" }
 ]
-description = "Automatic Journal Entry posting from Interactive Brokers PDF statements"
-requires-python = ">=3.10"
+description = "Automatic Journal Entry posting from brokerage statement PDFs (Interactive Brokers, Charles Schwab, Fidelity, etc.)"
+requires-python = ">=3.11"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
