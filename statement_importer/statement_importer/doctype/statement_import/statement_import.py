@@ -20,7 +20,10 @@ class StatementImport(Document):
 
 	if TYPE_CHECKING:
 		from frappe.types import DF
-		from statement_importer.statement_importer.doctype.statement_transaction_line.statement_transaction_line import StatementTransactionLine
+
+		from statement_importer.statement_importer.doctype.statement_transaction_line.statement_transaction_line import (
+			StatementTransactionLine,
+		)
 
 		company: DF.Link | None
 		error_log: DF.TextEditor | None

@@ -6,12 +6,13 @@ API endpoints for Statement Importer
 Standard Frappe pattern: Whitelisted methods with permission checks
 """
 
-import frappe
-from frappe import _
-from frappe.utils import get_files_path
-import pdfplumber
 import json
 import os
+
+import frappe
+import pdfplumber
+from frappe import _
+from frappe.utils import get_files_path
 
 
 @frappe.whitelist()
@@ -111,7 +112,7 @@ def extract_pdf_preview(statement_doc_name):
 	except Exception as e:
 		# FIX Issue #2: Don't expose raw exception messages to users (security + UX)
 		frappe.log_error(
-			message=f"Error extracting PDF: {str(e)}\n{frappe.get_traceback()}",
+			message=f"Error extracting PDF: {e!s}\n{frappe.get_traceback()}",
 			title="Statement Importer - PDF Extraction Error"
 		)
 		frappe.throw(
@@ -185,7 +186,7 @@ def format_preview_html(extracted_data):
 
 	# Add text preview (handle potential empty text)
 	html += "<h4>Text Content (first 2000 characters):</h4>"
-	html += f"<pre style='background: #f5f5f5; padding: 10px; white-space: pre-wrap;'>"
+	html += "<pre style='background: #f5f5f5; padding: 10px; white-space: pre-wrap;'>"
 	text_preview = extracted_data.get('text', '')[:2000]
 	if text_preview:
 		html += frappe.utils.html_utils.escape_html(text_preview)
@@ -403,19 +404,19 @@ def parse_transactions_with_ai(statement_doc_name):
 		# Update status to failed
 		try:
 			statement.status = "Failed"
-			statement.error_log = f"AI Parsing Error: {str(e)}"
+			statement.error_log = f"AI Parsing Error: {e!s}"
 			statement.save()
 			# FIX Issue #1: Remove manual commit - Frappe handles this automatically
 		except Exception as update_error:
 			# Log the failure to update status (don't hide this error)
 			frappe.log_error(
-				message=f"Failed to update statement status after AI error: {str(update_error)}\n{frappe.get_traceback()}",
+				message=f"Failed to update statement status after AI error: {update_error!s}\n{frappe.get_traceback()}",
 				title="Statement Importer - Status Update Error"
 			)
 
 		# Standard Frappe pattern: Log error, show user-friendly message
 		frappe.log_error(
-			message=f"Error parsing transactions with AI: {str(e)}\n{frappe.get_traceback()}",
+			message=f"Error parsing transactions with AI: {e!s}\n{frappe.get_traceback()}",
 			title="Statement Importer - AI Parsing Error"
 		)
 		# FIX Issue #2: Don't expose raw exception to users
@@ -530,7 +531,7 @@ def build_parsing_prompt(extracted_data, statement):
 		provider = frappe.get_doc("Statement Provider", statement.statement_provider)
 	except Exception as e:
 		frappe.log_error(
-			message=f"Failed to load provider: {str(e)}",
+			message=f"Failed to load provider: {e!s}",
 			title="Statement Importer - Provider Load Error"
 		)
 		frappe.throw(
@@ -622,7 +623,7 @@ def format_tables_for_prompt(tables, max_tables=5, max_rows=20):
 			continue
 
 		tables_text += f"\n\nTable {idx}:\n"
-		for row_idx, row in enumerate(table[:max_rows]):
+		for _row_idx, row in enumerate(table[:max_rows]):
 			# Skip None or empty rows
 			if not row:
 				continue
@@ -735,7 +736,7 @@ def parse_ai_response(response):
 						frappe.log_error("Recovery produced empty or invalid result", "Statement Importer - Recovery Failed")
 				except Exception as recovery_error:
 					frappe.log_error(
-						message=f"Recovery parse failed: {str(recovery_error)}\n"
+						message=f"Recovery parse failed: {recovery_error!s}\n"
 								f"Fixed JSON was: {fixed_json[:1000]}...",
 						title="Statement Importer - Recovery Parse Failed"
 					)
@@ -748,7 +749,7 @@ def parse_ai_response(response):
 		# Log detailed error
 		frappe.log_error(
 			message=f"Failed to parse AI response as JSON\n\n"
-					f"Parse Error: {str(e)}\n\n"
+					f"Parse Error: {e!s}\n\n"
 					f"Raw Response ({len(response)} chars):\n{response}\n\n"
 					f"Cleaned Response ({len(cleaned)} chars):\n{cleaned}",
 			title="Statement Importer - JSON Parse Error"
@@ -1007,7 +1008,7 @@ def create_journal_entries(statement_doc_name):
 	except Exception as e:
 		# Log error
 		frappe.log_error(
-			message=f"Error creating journal entries: {str(e)}\n{frappe.get_traceback()}",
+			message=f"Error creating journal entries: {e!s}\n{frappe.get_traceback()}",
 			title="Statement Import - JE Creation Error"
 		)
 		# FIX Issue #2: Don't expose raw exception to users
