@@ -20,7 +20,10 @@ class StatementProvider(Document):
 
 	if TYPE_CHECKING:
 		from frappe.types import DF
-		from statement_importer.statement_importer.doctype.statement_accounting_rule.statement_accounting_rule import StatementAccountingRule
+
+		from statement_importer.statement_importer.doctype.statement_accounting_rule.statement_accounting_rule import (
+			StatementAccountingRule,
+		)
 
 		accounting_rules: DF.Table[StatementAccountingRule]
 		enabled: DF.Check
