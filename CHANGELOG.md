@@ -883,7 +883,7 @@ bench restart
 
 ## Links
 
-- **Repository:** https://github.com/norelinorth/statement_importer
-- **Issues:** https://github.com/norelinorth/statement_importer/issues
-- **Discussions:** https://github.com/norelinorth/statement_importer/discussions
-- **Documentation:** https://github.com/norelinorth/statement_importer/blob/main/README.md
+- **Repository:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer
+- **Issues:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues
+- **Discussions:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer/discussions
+- **Documentation:** https://github.com/norelinorth/norelinorth_brokerage_statement_importer/blob/main/README.md
