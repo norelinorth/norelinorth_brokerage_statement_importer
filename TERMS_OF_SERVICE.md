@@ -160,7 +160,7 @@ Upon termination:
 
 The App may integrate with third-party services (AI providers for parsing). Your use of these services is subject to their respective terms of service and privacy policies.
 
-The App processes statements from third-party brokerages (Interactive Brokers, Charles Schwab, Fidelity, etc.). This App is not affiliated with, endorsed by, or officially connected to any brokerage firm.
+The App processes statements from third-party brokerages (Interactive Brokers and custom providers). This App is not affiliated with, endorsed by, or officially connected to any brokerage firm.
 
 ## 13. Governing Law
 

@@ -390,7 +390,7 @@ bench restart
    - API key is valid
    - Default model is set
 3. Test API connection
-4. Check quota/credits with AI provider
+4. Check quota/credits with your AI provider
 
 #### Issue: Transactions don't balance (debit ≠ credit)
 

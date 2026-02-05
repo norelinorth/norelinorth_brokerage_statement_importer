@@ -3,7 +3,7 @@ name = "statement_importer"
 authors = [
     { name = "Noreli North" }
 ]
-description = "Automatic Journal Entry posting from brokerage statement PDFs (Interactive Brokers, Charles Schwab, Fidelity, etc.)"
+description = "Automatic Journal Entry posting from brokerage statement PDFs (Interactive Brokers and custom providers)"
 requires-python = ">=3.11"
 readme = "README.md"
 dynamic = ["version"]
@@ -19,9 +19,13 @@ build-backend = "flit_core.buildapi"
 [tool.bench.dev-dependencies]
 # package_name = "~=1.1.0"
 
+[tool.bench.frappe-dependencies]
+frappe = ">=15.0.0,<17.0.0"
+erpnext = ">=15.0.0,<17.0.0"
+
 [tool.ruff]
 line-length = 110
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = [

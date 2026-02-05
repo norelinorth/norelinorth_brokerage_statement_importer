@@ -13,7 +13,7 @@
 
 ## Overview
 
-Noreli North Brokerage Statement Importer is a production-ready Frappe/ERPNext app that automates Journal Entry creation from brokerage statement PDFs. It leverages AI-powered transaction parsing and supports multiple brokerage providers including Interactive Brokers, Charles Schwab, and Fidelity.
+Noreli North Brokerage Statement Importer is a production-ready Frappe/ERPNext app that automates Journal Entry creation from brokerage statement PDFs. It leverages AI-powered transaction parsing and supports multiple brokerage providers including Interactive Brokers and custom templates.
 
 **Designed specifically for investment brokerage statements** - extracts buy/sell trades, dividends, interest, and fees to create accurate accounting entries.
 
@@ -21,11 +21,11 @@ Noreli North Brokerage Statement Importer is a production-ready Frappe/ERPNext a
 
 - 📄 **PDF Upload & Extraction** - Upload PDF statements and extract text/tables automatically
 - 🤖 **AI-Powered Parsing** - Intelligent transaction extraction using provider-specific templates
-- 🏦 **Multi-Provider Support** - Interactive Brokers, Charles Schwab, Fidelity (extensible)
+- 🏦 **Multi-Provider Support** - Interactive Brokers and custom templates (extensible)
 - ✅ **Transaction Validation** - Automatic validation of debits/credits, balancing, and required fields
 - 🔒 **Security First** - Permission checks, file validation, XSS prevention
 - 🌍 **Internationalization** - All strings translatable, multi-currency ready
-- 📊 **Professional Quality** - 100% Frappe/ERPNext standards compliance
+- 📊 **Professional Quality** - 100% Frappe/ERPNext standards compliance (v15 & v16 compatible)
 
 ### Supported Providers
 
@@ -109,7 +109,7 @@ Each provider has:
 
 For AI-powered parsing, the norelinorth_ai_assistant app is required. Configure:
 - **Desk → AI Assistant → AI Provider**
-- Set API keys (OpenAI, Anthropic, etc.)
+- Set API keys for your preferred LLM provider
 - Enable AI features
 
 ## Features by Phase
@@ -292,6 +292,6 @@ See [LICENSE](license.txt) for full license text.
 
 ---
 
-**Made with ❤️ by Noreli North**
+
 
 For support, please use [GitHub Issues](https://github.com/norelinorth/norelinorth_brokerage_statement_importer/issues)

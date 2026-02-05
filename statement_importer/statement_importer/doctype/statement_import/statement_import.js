@@ -5,21 +5,21 @@ frappe.ui.form.on("Statement Import", {
 	refresh(frm) {
 		// Add "Extract PDF" button if document is saved and has a file
 		if (!frm.is_new() && frm.doc.statement_file) {
-			frm.add_custom_button(__("Extract PDF Data"), function() {
+			frm.add_custom_button(__("Extract PDF Data"), function () {
 				extract_pdf_data(frm);
 			}, __("Actions"));
 		}
 
 		// Add "Parse with AI" button if PDF has been extracted
 		if (!frm.is_new() && frm.doc.preview_data && frm.doc.status !== "Processing") {
-			frm.add_custom_button(__("Parse with AI"), function() {
+			frm.add_custom_button(__("Parse with AI"), function () {
 				parse_with_ai(frm);
 			}, __("Actions")).addClass("btn-primary");
 		}
 
 		// Add "Create Journal Entries" button if transactions have been parsed
 		if (!frm.is_new() && frm.doc.transactions_found > 0) {
-			frm.add_custom_button(__("Create Journal Entries"), function() {
+			frm.add_custom_button(__("Create Journal Entries"), function () {
 				create_journal_entries(frm);
 			}, __("Actions")).addClass("btn-primary");
 		}
@@ -51,31 +51,28 @@ function extract_pdf_data(frm) {
 		},
 		freeze: true,
 		freeze_message: __("Extracting PDF data..."),
-		callback: function(r) {
+		callback: function (r) {
 			if (r.message && r.message.success) {
 				// Reload form to show updated preview
 				frm.reload_doc();
 
 				// Show success message with summary
-				frappe.msgprint({
-					title: __("PDF Extraction Successful"),
-					message: __("Found {0} tables in {1} pages", [
+				frappe.show_alert({
+					message: __("PDF Extraction Successful: Found {0} tables in {1} pages", [
 						r.message.tables_found,
 						r.message.page_count || "?"
 					]),
 					indicator: "green"
-				});
+				}, 5);
 
 				// Show extracted data in dialog
 				show_extraction_preview(r.message);
+			} else {
+				handle_server_error(r, __("Extraction Failed"));
 			}
 		},
-		error: function(r) {
-			frappe.msgprint({
-				title: __("Extraction Failed"),
-				message: __("Failed to extract PDF data. Please check the error log."),
-				indicator: "red"
-			});
+		error: function (r) {
+			handle_server_error(r, __("Extraction Failed"));
 		}
 	});
 }
@@ -84,7 +81,7 @@ function parse_with_ai(frm) {
 	// Confirm before proceeding (AI processing can take time)
 	frappe.confirm(
 		__("This will use AI to parse transactions from the extracted PDF data. This may take a few moments. Continue?"),
-		function() {
+		function () {
 			// Show progress indicator
 			frappe.show_alert({
 				message: __("Parsing transactions with AI..."),
@@ -99,30 +96,27 @@ function parse_with_ai(frm) {
 				},
 				freeze: true,
 				freeze_message: __("AI is analyzing the statement... This may take 30-60 seconds..."),
-				callback: function(r) {
+				callback: function (r) {
 					if (r.message && r.message.success) {
 						// Reload form to show parsed transactions
 						frm.reload_doc();
 
 						// Show success message with count
-						frappe.msgprint({
-							title: __("AI Parsing Successful"),
-							message: __("Successfully parsed {0} transactions. Review them in the Transactions table below.", [
+						frappe.show_alert({
+							message: __("AI Parsing Successful: Parsed {0} transactions", [
 								r.message.transactions_parsed
 							]),
 							indicator: "green"
-						});
+						}, 5);
 
 						// Show parsing results dialog
 						show_parsing_results(r.message);
+					} else {
+						handle_server_error(r, __("AI Parsing Failed"));
 					}
 				},
-				error: function(r) {
-					frappe.msgprint({
-						title: __("AI Parsing Failed"),
-						message: __("Failed to parse transactions with AI. Please check the error log for details."),
-						indicator: "red"
-					});
+				error: function (r) {
+					handle_server_error(r, __("AI Parsing Failed"));
 				}
 			});
 		}
@@ -133,7 +127,7 @@ function create_journal_entries(frm) {
 	// Confirm before creating Journal Entries
 	frappe.confirm(
 		__("This will create Journal Entries for all Validated and Pending transactions. Continue?"),
-		function() {
+		function () {
 			// Show progress indicator
 			frappe.show_alert({
 				message: __("Creating Journal Entries..."),
@@ -148,7 +142,7 @@ function create_journal_entries(frm) {
 				},
 				freeze: true,
 				freeze_message: __("Creating Journal Entries... This may take a moment..."),
-				callback: function(r) {
+				callback: function (r) {
 					// FIX Issue #2: Handle all response types (success, partial success, failure)
 					if (r.message) {
 						// Always reload to show updated transaction statuses
@@ -158,44 +152,45 @@ function create_journal_entries(frm) {
 							// Show results (even if partial success with some errors)
 							show_je_creation_results(r.message);
 						} else {
-							// All transactions failed - show error message
-							frappe.msgprint({
-								title: __("No Journal Entries Created"),
-								message: __("Failed to create any Journal Entries. Please check transaction statuses and error messages in the Transactions table below."),
-								indicator: "red"
-							});
+							handle_server_error(r, __("No Journal Entries Created"));
 						}
+					} else {
+						handle_server_error(r, __("No Journal Entries Created"));
 					}
 				},
-				error: function(r) {
-					// FIX Issue #4: Show actual error message instead of generic message
-					let error_msg = __("Failed to create Journal Entries. Please check the error log for details.");
-
-					// Try to extract actual error message from server response
-					if (r._server_messages) {
-						try {
-							let server_msgs = JSON.parse(r._server_messages);
-							if (server_msgs && server_msgs.length > 0) {
-								let msg = JSON.parse(server_msgs[0]);
-								if (msg.message) {
-									error_msg = msg.message;
-								}
-							}
-						} catch (e) {
-							// Fallback to generic message if parsing fails
-							console.error("Failed to parse server error:", e);
-						}
-					}
-
-					frappe.msgprint({
-						title: __("Journal Entry Creation Failed"),
-						message: error_msg,
-						indicator: "red"
-					});
+				error: function (r) {
+					handle_server_error(r, __("Journal Entry Creation Failed"));
 				}
 			});
 		}
 	);
+}
+
+function handle_server_error(r, title) {
+	let error_msg = __("An unexpected error occurred. Please check the error log for details.");
+
+	// Try to extract actual error message from server response
+	if (r && r._server_messages) {
+		try {
+			let server_msgs = JSON.parse(r._server_messages);
+			if (server_msgs && server_msgs.length > 0) {
+				let msg = JSON.parse(server_msgs[0]);
+				if (msg.message) {
+					error_msg = msg.message;
+				}
+			}
+		} catch (e) {
+			console.error("Failed to parse server error:", e);
+		}
+	} else if (r && r.message && r.message.error) {
+		error_msg = r.message.error;
+	}
+
+	frappe.msgprint({
+		title: title || __("Error"),
+		message: error_msg,
+		indicator: "red"
+	});
 }
 
 function show_je_creation_results(data) {
@@ -260,7 +255,7 @@ function show_parsing_results(data) {
 		],
 		size: "large",
 		primary_action_label: __("Close"),
-		primary_action: function() {
+		primary_action: function () {
 			dialog.hide();
 		}
 	});
@@ -309,7 +304,7 @@ function show_extraction_preview(data) {
 		],
 		size: "large",
 		primary_action_label: __("Close"),
-		primary_action: function() {
+		primary_action: function () {
 			dialog.hide();
 		}
 	});

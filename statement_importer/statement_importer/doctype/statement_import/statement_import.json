@@ -1,178 +1,179 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "format:STMT-IMP-{YYYY}-{#####}",
- "creation": "2025-01-10 10:00:00.000000",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "section_break_1",
-  "statement_file",
-  "column_break_3",
-  "company",
-  "import_date",
-  "statement_period",
-  "statement_provider",
-  "section_break_7",
-  "status",
-  "transactions_found",
-  "column_break_10",
-  "journal_entries_created",
-  "section_break_12",
-  "transactions",
-  "section_break_14",
-  "preview_data",
-  "error_log"
- ],
- "fields": [
-  {
-   "fieldname": "section_break_1",
-   "fieldtype": "Section Break",
-   "label": "Statement Details"
-  },
-  {
-   "fieldname": "statement_file",
-   "fieldtype": "Attach",
-   "label": "Statement PDF"
-  },
-  {
-   "fieldname": "column_break_3",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "label": "Company",
-   "options": "Company",
-   "reqd": 1
-  },
-  {
-   "fieldname": "import_date",
-   "fieldtype": "Date",
-   "label": "Import Date",
-   "reqd": 1
-  },
-  {
-   "fieldname": "statement_period",
-   "fieldtype": "Data",
-   "label": "Statement Period",
-   "description": "e.g., 2025-01"
-  },
-  {
-   "fieldname": "statement_provider",
-   "fieldtype": "Link",
-   "label": "Statement Provider",
-   "options": "Statement Provider",
-   "description": "Select the brokerage provider (Interactive Brokers, Charles Schwab, etc.)"
-  },
-  {
-   "fieldname": "section_break_7",
-   "fieldtype": "Section Break",
-   "label": "Status"
-  },
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Draft\nProcessing\nCompleted\nFailed",
-   "default": "Draft",
-   "reqd": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1
-  },
-  {
-   "fieldname": "transactions_found",
-   "fieldtype": "Int",
-   "label": "Transactions Found",
-   "read_only": 1,
-   "in_list_view": 1
-  },
-  {
-   "fieldname": "column_break_10",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "journal_entries_created",
-   "fieldtype": "Int",
-   "label": "Journal Entries Created",
-   "read_only": 1,
-   "in_list_view": 1
-  },
-  {
-   "fieldname": "section_break_12",
-   "fieldtype": "Section Break",
-   "label": "Transactions"
-  },
-  {
-   "fieldname": "transactions",
-   "fieldtype": "Table",
-   "label": "Transactions",
-   "options": "Statement Transaction Line"
-  },
-  {
-   "fieldname": "section_break_14",
-   "fieldtype": "Section Break",
-   "label": "Preview & Logs"
-  },
-  {
-   "fieldname": "preview_data",
-   "fieldtype": "Text Editor",
-   "label": "Preview Data",
-   "read_only": 1
-  },
-  {
-   "fieldname": "error_log",
-   "fieldtype": "Text Editor",
-   "label": "Error Log",
-   "read_only": 1
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-01-10 10:00:00.000000",
- "modified_by": "Administrator",
- "module": "Statement Importer",
- "name": "Statement Import",
- "naming_rule": "Expression",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Accounts Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Accounts User",
-   "share": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": [],
- "track_changes": 1,
- "track_seen": 1
+    "actions": [],
+    "allow_rename": 1,
+    "autoname": "format:STMT-IMP-{YYYY}-{#####}",
+    "creation": "2025-01-10 10:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "section_break_1",
+        "statement_file",
+        "column_break_3",
+        "company",
+        "import_date",
+        "statement_period",
+        "statement_provider",
+        "section_break_7",
+        "status",
+        "transactions_found",
+        "column_break_10",
+        "journal_entries_created",
+        "section_break_12",
+        "transactions",
+        "section_break_14",
+        "preview_data",
+        "error_log"
+    ],
+    "fields": [
+        {
+            "fieldname": "section_break_1",
+            "fieldtype": "Section Break",
+            "label": "Statement Details"
+        },
+        {
+            "fieldname": "statement_file",
+            "fieldtype": "Attach",
+            "label": "Statement PDF"
+        },
+        {
+            "fieldname": "column_break_3",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "company",
+            "fieldtype": "Link",
+            "label": "Company",
+            "options": "Company",
+            "reqd": 1
+        },
+        {
+            "fieldname": "import_date",
+            "fieldtype": "Date",
+            "label": "Import Date",
+            "reqd": 1
+        },
+        {
+            "fieldname": "statement_period",
+            "fieldtype": "Data",
+            "label": "Statement Period",
+            "description": "e.g., 2025-01"
+        },
+        {
+            "fieldname": "statement_provider",
+            "fieldtype": "Link",
+            "label": "Statement Provider",
+            "options": "Statement Provider",
+            "description": "Select the brokerage provider (Interactive Brokers, Charles Schwab, etc.)",
+            "reqd": 1
+        },
+        {
+            "fieldname": "section_break_7",
+            "fieldtype": "Section Break",
+            "label": "Status"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Draft\nProcessing\nCompleted\nFailed",
+            "default": "Draft",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "transactions_found",
+            "fieldtype": "Int",
+            "label": "Transactions Found",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "column_break_10",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "journal_entries_created",
+            "fieldtype": "Int",
+            "label": "Journal Entries Created",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "section_break_12",
+            "fieldtype": "Section Break",
+            "label": "Transactions"
+        },
+        {
+            "fieldname": "transactions",
+            "fieldtype": "Table",
+            "label": "Transactions",
+            "options": "Statement Transaction Line"
+        },
+        {
+            "fieldname": "section_break_14",
+            "fieldtype": "Section Break",
+            "label": "Preview & Logs"
+        },
+        {
+            "fieldname": "preview_data",
+            "fieldtype": "Text Editor",
+            "label": "Preview Data",
+            "read_only": 1
+        },
+        {
+            "fieldname": "error_log",
+            "fieldtype": "Text Editor",
+            "label": "Error Log",
+            "read_only": 1
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2026-01-10 10:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Statement Importer",
+    "name": "Statement Import",
+    "naming_rule": "Expression",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "Accounts Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "Accounts User",
+            "share": 1
+        }
+    ],
+    "sort_field": "creation",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "track_seen": 0
 }
