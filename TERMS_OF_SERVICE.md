@@ -13,12 +13,6 @@ The App is provided under the MIT License. You are granted a worldwide, non-excl
 
 Full license text: https://opensource.org/licenses/MIT
 
-## 3. Open Source Software
-
-This App is open source software. The complete source code is available at:
-https://github.com/norelinorth/norelinorth_brokerage_statement_importer
-
-You may inspect, modify, and redistribute the code according to the MIT License terms.
 
 ## 4. Use of the App
 
