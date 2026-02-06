@@ -77,12 +77,11 @@ THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, E
 
 ## 6. Limitation of Liability
 
-TO THE MAXIMUM EXTENT PERMITTED BY LAW:
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE DEVELOPER OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-- The developer shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages
-- This includes damages for loss of profits, data, business, incorrect accounting entries, or regulatory penalties
-- Total liability shall not exceed the amount paid for the App (zero for open source)
-- Some jurisdictions do not allow limitation of liability, so this may not apply to you
+THIS LIMITATION OF LIABILITY IS COMPREHENSIVE AND APPLIES TO ALL DAMAGES OF ANY KIND, INCLUDING WITHOUT LIMITATION DIRECT, INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, AND CONSEQUENTIAL DAMAGES, LOSS OF DATA, INCOME, OR PROFIT, LOSS OF OR DAMAGE TO PROPERTY, AND CLAIMS OF THIRD PARTIES.
+
+THE ENTIRE RISK ARISING OUT OF THE USE OR PERFORMANCE OF THE APP REMAINS WITH YOU.
 
 ## 7. Accounting and Financial Responsibility
 
