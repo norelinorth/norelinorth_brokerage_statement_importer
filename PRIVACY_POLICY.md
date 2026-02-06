@@ -5,7 +5,7 @@
 
 ## Overview
 
-This Privacy Policy describes how the Noreli North Brokerage Statement Importer app ("the App") handles data. **This is not a typical privacy policy** because the App is open source software that runs entirely on your own infrastructure.
+This Privacy Policy describes how the Noreli North Brokerage Statement Importer app ("the App") handles data. **This is not a typical privacy policy** because the App runs entirely on your own infrastructure.
 
 ## Key Privacy Principles
 
@@ -170,10 +170,9 @@ If you operate in California:
 - The App provides tools to manage financial data securely
 - Consult qualified professionals as needed
 
-## Open Source Transparency
+## Transparency
 
-The App is **fully open source** (MIT License):
-- Source code: https://github.com/norelinorth/norelinorth_brokerage_statement_importer
+The App operates under the MIT License:
 - You can inspect all code to verify privacy claims
 - You can modify the code to meet your privacy requirements
 - No hidden functionality or backdoors
@@ -218,7 +217,7 @@ For data privacy issues related to your installation, contact your Frappe/ERPNex
 1. **We don't collect your data** - The App runs on your server, not ours
 2. **You control everything** - All data stays in your database
 3. **Sensitive financial data** - Brokerage statements contain sensitive information; secure appropriately
-4. **Open source = transparent** - You can inspect all code
+4. **Traditional Software** - You can inspect all code
 5. **AI is optional** - PDF extraction works 100% locally without external services
 6. **Standard Frappe security** - Follows all Frappe best practices
 7. **You're the data controller** - You're responsible for compliance with data protection laws
