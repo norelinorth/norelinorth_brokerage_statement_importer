@@ -4,7 +4,7 @@ app_publisher = "Noreli North"
 app_description = "Automatic Journal Entry posting from brokerage statement PDFs (Interactive Brokers and custom providers)"
 app_email = ""
 app_license = "mit"
-app_version = "1.3.9"
+app_version = "1.4.0"
 
 # Apps
 # ------------------

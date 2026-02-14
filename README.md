@@ -261,7 +261,7 @@ We welcome contributions! Please follow these guidelines:
 
 ## Roadmap
 
-### Version 1.3.8 (Current)
+### Version 1.3.8
 
 - ✅ Multi-provider support (IB, Schwab, Fidelity)
 - ✅ Provider configuration UI
@@ -271,7 +271,14 @@ We welcome contributions! Please follow these guidelines:
 - ✅ **Transaction status tracking**
 - ✅ **100% Standards Compliance**
 
-### Version 1.4.0 (Next)
+### Version 1.4.0 (Current)
+
+- ✅ **Frappe v16 Compatibility** (Python 3.12/3.13 ready)
+- ✅ **Automated CI Patching** (Type hints & uuid7)
+- ✅ **Enhanced Documentation** (AI Config & User Guide)
+- ✅ **Stability Fixes** (Redis & Node deps)
+
+### Version 1.5.0 (Future)
 
 - 🔲 Multi-currency support for transactions
 - 🔲 Advanced account mapping wizard
@@ -298,7 +305,7 @@ See [LICENSE](license.txt) for full license text.
 **App:** Noreli North Brokerage Statement Importer
 **Author:** Noreli North
 **Maintainer:** Noreli North
-**Version:** 1.3.8
+**Version:** 1.4.0
 
 ### Built With
 

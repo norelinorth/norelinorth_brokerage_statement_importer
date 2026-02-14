@@ -5,6 +5,27 @@ All notable changes to Statement Importer will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-02-14
+
+### Added - Frappe v16 Support & Docs
+
+**Major Compatibility Release** - Adds full support for Frappe v16 / ERPNext v16 (Python 3.12+)
+
+#### 🚀 New Features & Fixes
+
+- **Frappe v16 Compatibility** 🟢
+    - **Bulk Type Patching**: Automated CI patching for invalid Python 3.12 type hints (`|` syntax) via `install.sh`.
+    - **UUID7 Backport**: Added polyfill for `uuid7` (Python 3.13+) to work on Python 3.12.
+    - **Node Dependencies**: Fixed missing `onscan.js` installation for ERPNext v16 frontend.
+    - **Redis Config**: Fixed CI connection errors by forcing system Redis ports (6379).
+
+- **Documentation Improvements** 📚
+    - **Enhanced README**: Added detailed AI Assistant configuration steps.
+    - **User Guide Visibility**: Moved User Guide link to top for better accessibility.
+    - **Clarified Configuration**: Removed redundant installation steps from AI config.
+
+---
+
 ## [1.3.8] - 2026-01-12
 
 ### Fixed - 100% Standards Compliance (No Fallback Logic)
