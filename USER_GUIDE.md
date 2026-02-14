@@ -24,7 +24,7 @@ Statement Importer automates the processing of brokerage PDF statements into ERP
 
 ### What This App Does
 
-- **Upload PDF Statements** from Interactive Brokers, Charles Schwab, Fidelity, or custom providers
+- **Upload PDF Statements** from Interactive Brokers or custom providers
 - **Extract Text & Tables** automatically using intelligent PDF parsing
 - **Parse Transactions** using AI with provider-specific templates
 - **Validate Transactions** ensuring all debits/credits balance correctly
