@@ -94,8 +94,35 @@ bench set-config -g root_password root
 bench set-config -g admin_password admin
 
 # Get ERPNext
-echo -e "${YELLOW}Getting ERPNext...${NC}"
-bench get-app --branch ${BRANCH_TO_CLONE} erpnext
+# Manually clone and patch ERPNext to bypass Python 3.14 requirement
+echo -e "${YELLOW}Cloning and patching ERPNext...${NC}"
+git clone -b ${BRANCH_TO_CLONE} --depth 1 https://github.com/frappe/erpnext.git apps/erpnext
+
+# Relax python requirement for ERPNext
+sed -i 's/^requires-python.*/requires-python = ">=3.12"/' apps/erpnext/pyproject.toml
+grep "requires-python" apps/erpnext/pyproject.toml
+
+# Fix ERPNext v16 type hint errors (invalid syntax "Type" | None) by adding future annotations
+echo -e "${YELLOW}Scanning ERPNext for files with invalid type hint syntax...${NC}"
+grep -rE --include="*.py" -l '(\s*"[a-zA-Z0-9_]+"\s*\||\|\s*"[a-zA-Z0-9_]+")' apps/erpnext/erpnext | \
+while read -r file; do
+    if ! grep -q "from __future__ import annotations" "$file"; then
+        echo "Patching $file..."
+        sed -i '1s/^/from __future__ import annotations\n/' "$file"
+    fi
+done
+
+# Fix uuid7 ImportError in ERPNext if present
+echo -e "${YELLOW}Checking ERPNext for uuid7 import errors...${NC}"
+grep -rE --include="*.py" -l 'from uuid import UUID, uuid7' apps/erpnext/erpnext | \
+while read -r file; do
+    echo -e "${YELLOW}Patching $file to backport uuid7...${NC}"
+    perl -i -pe 's/from uuid import UUID, uuid7/from uuid import UUID\ntry:\n    from uuid import uuid7\nexcept ImportError:\n    from uuid import uuid4\n    uuid7 = uuid4/' "$file"
+done
+
+# Install ERPNext
+echo -e "${YELLOW}Installing ERPNext...${NC}"
+./env/bin/pip install -e apps/erpnext
 
 # Get statement_importer (current repo)
 echo -e "${YELLOW}Getting statement_importer app...${NC}"
