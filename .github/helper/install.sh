@@ -44,7 +44,8 @@ git -C frappe-repo add pyproject.toml
 echo -e "${YELLOW}Checking for frappe/utils/data.py type hint error...${NC}"
 if grep -q "\"UnicodeWithAttrs\" | None" frappe-repo/frappe/utils/data.py; then
     echo -e "${YELLOW}Patching frappe/utils/data.py...${NC}"
-    sed -i 's/-> "UnicodeWithAttrs" | None/-> "UnicodeWithAttrs | None"/' frappe-repo/frappe/utils/data.py
+    # Insert future import at the top
+    sed -i '1s/^/from __future__ import annotations\n/' frappe-repo/frappe/utils/data.py
     git -C frappe-repo add frappe/utils/data.py
 fi
 
@@ -52,8 +53,8 @@ fi
 echo -e "${YELLOW}Checking for frappe/__init__.py type hint errors...${NC}"
 if grep -q "cache: \"RedisWrapper\" | None = None" frappe-repo/frappe/__init__.py; then
     echo -e "${YELLOW}Patching frappe/__init__.py...${NC}"
-    sed -i 's/cache: "RedisWrapper" | None = None/cache: "RedisWrapper | None" = None/' frappe-repo/frappe/__init__.py
-    sed -i 's/client_cache: "ClientCache" | None = None/client_cache: "ClientCache | None" = None/' frappe-repo/frappe/__init__.py
+    # Insert future import at the top
+    sed -i '1s/^/from __future__ import annotations\n/' frappe-repo/frappe/__init__.py
     git -C frappe-repo add frappe/__init__.py
 fi
 
