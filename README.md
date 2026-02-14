@@ -46,6 +46,19 @@ Noreli North Brokerage Statement Importer is a production-ready Frappe/ERPNext a
 
 See [V16_COMPATIBILITY.md](V16_COMPATIBILITY.md) for full version compatibility details.
 
+## Documentation
+
+For a complete walkthrough of all features, roles, and workflows, please consult the:
+
+👉 **[Comprehensive User Guide](USER_GUIDE.md)**
+
+It covers:
+- detailed prerequisites
+- step-by-step import workflow
+- troubleshooting common errors (PDF issues, balancing)
+- best practices for accounting automation
+
+
 ## Quick Start Guide
 
 ### 1. Navigate to Statement Importer
@@ -109,33 +122,17 @@ Each provider has:
 
 To enable AI-powered transaction parsing, you must configure the **Noreli North AI Assistant**:
 
-1. **Install the App**:
-   ```bash
-   bench get-app https://github.com/norelinorth/norelinorth_ai_assistant.git
-   bench --site [your-site] install-app norelinorth_ai_assistant
-   ```
-2. **Configure Provider**:
+1. **Configure Provider**:
    - Navigate to **Desk → AI Assistant → AI Provider**
    - Create a new provider (e.g., "OpenAI" or "Anthropic")
    - Enter your **API Key**
    - Set as **Default**
-3. **Verify**:
+
+2. **Verify**:
    - Go to **Statement Importer → Statement Provider**
    - Ensure your providers (e.g., "Interactive Brokers") are enabled
 
 > **Note:** Without this configuration, the "Parse with AI" action will fail or return empty results.
-
-## Documentation
-
-For a complete walkthrough of all features, roles, and workflows, please consult the:
-
-👉 **[Comprehensive User Guide](USER_GUIDE.md)**
-
-It covers:
-- detailed prerequisites
-- step-by-step import workflow
-- troubleshooting common errors (PDF issues, balancing)
-- best practices for accounting automation
 
 ## Features by Phase
 
