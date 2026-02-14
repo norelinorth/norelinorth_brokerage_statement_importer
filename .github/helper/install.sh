@@ -39,6 +39,14 @@ sed -i 's/^requires-python.*/requires-python = ">=3.12"/' frappe-repo/pyproject.
 echo -e "${YELLOW}Verifying pyproject.toml patch:${NC}"
 grep "requires-python" frappe-repo/pyproject.toml
 
+# Commit the patch locally so bench init (which clones) picks it up
+cd frappe-repo
+git config user.email "ci@example.com"
+git config user.name "CI"
+git add pyproject.toml
+git commit -m "chore: relax python requirement"
+cd ..
+
 # Initialize bench with patched Frappe
 echo -e "${YELLOW}Initializing bench with patched Frappe...${NC}"
 bench init --skip-redis-config-generation --frappe-path $(pwd)/frappe-repo frappe-bench
