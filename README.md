@@ -105,12 +105,37 @@ Each provider has:
 - **Prompt Template:** AI parsing instructions (provider-specific)
 - **Accounting Rules:** Transaction type mappings (buy/sell/dividend/fee)
 
-### AI Integration (Optional)
+### AI Integration (Critical for Phase 2)
 
-For AI-powered parsing, the norelinorth_ai_assistant app is required. Configure:
-- **Desk → AI Assistant → AI Provider**
-- Set API keys for your preferred LLM provider
-- Enable AI features
+To enable AI-powered transaction parsing, you must configure the **Noreli North AI Assistant**:
+
+1. **Install the App**:
+   ```bash
+   bench get-app https://github.com/norelinorth/norelinorth_ai_assistant.git
+   bench --site [your-site] install-app norelinorth_ai_assistant
+   ```
+2. **Configure Provider**:
+   - Navigate to **Desk → AI Assistant → AI Provider**
+   - Create a new provider (e.g., "OpenAI" or "Anthropic")
+   - Enter your **API Key**
+   - Set as **Default**
+3. **Verify**:
+   - Go to **Statement Importer → Statement Provider**
+   - Ensure your providers (e.g., "Interactive Brokers") are enabled
+
+> **Note:** Without this configuration, the "Parse with AI" action will fail or return empty results.
+
+## Documentation
+
+For a complete walkthrough of all features, roles, and workflows, please consult the:
+
+👉 **[Comprehensive User Guide](USER_GUIDE.md)**
+
+It covers:
+- detailed prerequisites
+- step-by-step import workflow
+- troubleshooting common errors (PDF issues, balancing)
+- best practices for accounting automation
 
 ## Features by Phase
 
