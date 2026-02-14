@@ -124,8 +124,17 @@ while read -r file; do
 done
 
 # Install ERPNext
-echo -e "${YELLOW}Installing ERPNext...${NC}"
+echo -e "${YELLOW}Installing ERPNext Python dependencies...${NC}"
 ./env/bin/pip install -e apps/erpnext
+
+# Install ERPNext Node dependencies
+echo -e "${YELLOW}Installing ERPNext Node dependencies...${NC}"
+if [ -f "apps/erpnext/package.json" ]; then
+    echo -e "${YELLOW}Found package.json in apps/erpnext, running yarn install...${NC}"
+    cd apps/erpnext
+    yarn install
+    cd ../..
+fi
 
 # Get statement_importer (current repo)
 echo -e "${YELLOW}Getting statement_importer app...${NC}"
