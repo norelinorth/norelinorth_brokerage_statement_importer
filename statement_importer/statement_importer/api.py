@@ -83,7 +83,7 @@ def extract_pdf_preview(statement_doc_name):
 
 		# FIX Issue #3: Validate file size before processing (prevent DoS)
 		file_size = os.path.getsize(file_path)
-		
+
 		# Get limit from settings (standard Frappe pattern)
 		max_size_mb = frappe.db.get_single_value("Statement Importer Settings", "max_file_size_mb") or 50
 		max_size = max_size_mb * 1024 * 1024
@@ -771,7 +771,7 @@ def generate_accounting_examples(provider, company):
 
 	# Build examples from accounting rules (limit to first 4 for prompt size)
 	examples = []
-	for idx, rule in enumerate(provider.accounting_rules):
+	for _idx, rule in enumerate(provider.accounting_rules):
 		if not rule.enabled:
 			continue
 		if len(examples) >= 4:  # Limit to 4 examples max
