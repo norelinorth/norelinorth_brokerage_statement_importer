@@ -61,7 +61,8 @@ echo -e "${YELLOW}Checking for frappe/model/naming.py uuid7 import error...${NC}
 if grep -q "from uuid import UUID, uuid7" frappe-repo/frappe/model/naming.py; then
     echo -e "${YELLOW}Patching frappe/model/naming.py to backport uuid7...${NC}"
     # Replace the import line with a try-except block to polyfill uuid7 using uuid4
-    sed -i 's/from uuid import UUID, uuid7/from uuid import UUID; try: from uuid import uuid7; except ImportError: from uuid import uuid4; uuid7 = uuid4/' frappe-repo/frappe/model/naming.py
+    # Using perl for cleaner multi-line replacement
+    perl -i -pe 's/from uuid import UUID, uuid7/from uuid import UUID\ntry:\n    from uuid import uuid7\nexcept ImportError:\n    from uuid import uuid4\n    uuid7 = uuid4/' frappe-repo/frappe/model/naming.py
     git -C frappe-repo add frappe/model/naming.py
 fi
 
