@@ -34,7 +34,10 @@ pip install frappe-bench
 echo -e "${YELLOW}Cloning and patching Frappe ${BRANCH_TO_CLONE}...${NC}"
 git clone -b ${BRANCH_TO_CLONE} --depth 1 https://github.com/frappe/frappe.git frappe-repo
 # Relax python requirement from >=3.14 to >=3.12
-sed -i 's/requires-python = ">=3.14.*"/requires-python = ">=3.12"/' frappe-repo/pyproject.toml
+sed -i 's/^requires-python.*/requires-python = ">=3.12"/' frappe-repo/pyproject.toml
+# Verify patch
+echo -e "${YELLOW}Verifying pyproject.toml patch:${NC}"
+grep "requires-python" frappe-repo/pyproject.toml
 
 # Initialize bench with patched Frappe
 echo -e "${YELLOW}Initializing bench with patched Frappe...${NC}"
