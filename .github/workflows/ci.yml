@@ -117,7 +117,7 @@ jobs:
   test-v16:
     name: Test (Frappe v16 / ERPNext v16)
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/version-16' || github.base_ref == 'version-16'
+    if: github.ref == 'refs/heads/version-16' || github.ref == 'refs/heads/main' || github.base_ref == 'version-16' || github.base_ref == 'main'
     timeout-minutes: 60
 
     strategy:
