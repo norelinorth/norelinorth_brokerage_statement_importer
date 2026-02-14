@@ -39,12 +39,18 @@ sed -i 's/^requires-python.*/requires-python = ">=3.12"/' frappe-repo/pyproject.
 echo -e "${YELLOW}Verifying pyproject.toml patch:${NC}"
 grep "requires-python" frappe-repo/pyproject.toml
 
+# Fix Frappe v16 type hint error (invalid syntax "Type" | None)
+echo -e "${YELLOW}Patching frappe/utils/data.py type hint error...${NC}"
+sed -i 's/-> "UnicodeWithAttrs" | None/-> "UnicodeWithAttrs | None"/' frappe-repo/frappe/utils/data.py
+# Verify data.py patch
+grep "md_to_html" frappe-repo/frappe/utils/data.py
+
 # Commit the patch locally so bench init (which clones) picks it up
 cd frappe-repo
 git config user.email "ci@example.com"
 git config user.name "CI"
-git add pyproject.toml
-git commit -m "chore: relax python requirement"
+git add pyproject.toml frappe/utils/data.py
+git commit -m "chore: relax python requirement and fix type hint"
 cd ..
 
 # Initialize bench with patched Frappe
