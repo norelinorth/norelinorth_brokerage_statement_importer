@@ -50,7 +50,9 @@ while read -r file; do
     if ! grep -q "from __future__ import annotations" "$file"; then
         echo "Patching $file..."
         sed -i '1s/^/from __future__ import annotations\n/' "$file"
-        git -C frappe-repo add "$file"
+        # Strip frappe-repo/ prefix for git add
+        relative_file="${file#frappe-repo/}"
+        git -C frappe-repo add "$relative_file"
     fi
 done
 
