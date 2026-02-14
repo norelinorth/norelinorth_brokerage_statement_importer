@@ -38,26 +38,36 @@ sed -i 's/^requires-python.*/requires-python = ">=3.12"/' frappe-repo/pyproject.
 # Verify patch
 echo -e "${YELLOW}Verifying pyproject.toml patch:${NC}"
 grep "requires-python" frappe-repo/pyproject.toml
+git -C frappe-repo add pyproject.toml
 
 # Fix Frappe v16 type hint error (invalid syntax "Type" | None)
-echo -e "${YELLOW}Patching frappe/utils/data.py type hint error...${NC}"
-sed -i 's/-> "UnicodeWithAttrs" | None/-> "UnicodeWithAttrs | None"/' frappe-repo/frappe/utils/data.py
-# Verify data.py patch
-grep "md_to_html" frappe-repo/frappe/utils/data.py
+echo -e "${YELLOW}Checking for frappe/utils/data.py type hint error...${NC}"
+if grep -q "\"UnicodeWithAttrs\" | None" frappe-repo/frappe/utils/data.py; then
+    echo -e "${YELLOW}Patching frappe/utils/data.py...${NC}"
+    sed -i 's/-> "UnicodeWithAttrs" | None/-> "UnicodeWithAttrs | None"/' frappe-repo/frappe/utils/data.py
+    git -C frappe-repo add frappe/utils/data.py
+fi
 
 # Fix Frappe v16 type hint error in __init__.py (invalid syntax "Type" | None)
-echo -e "${YELLOW}Patching frappe/__init__.py type hint errors...${NC}"
-sed -i 's/cache: "RedisWrapper" | None = None/cache: "RedisWrapper | None" = None/' frappe-repo/frappe/__init__.py
-sed -i 's/client_cache: "ClientCache" | None = None/client_cache: "ClientCache | None" = None/' frappe-repo/frappe/__init__.py
-# Verify __init__.py patch
-grep "cache: \"RedisWrapper | None\"" frappe-repo/frappe/__init__.py
+echo -e "${YELLOW}Checking for frappe/__init__.py type hint errors...${NC}"
+if grep -q "cache: \"RedisWrapper\" | None = None" frappe-repo/frappe/__init__.py; then
+    echo -e "${YELLOW}Patching frappe/__init__.py...${NC}"
+    sed -i 's/cache: "RedisWrapper" | None = None/cache: "RedisWrapper | None" = None/' frappe-repo/frappe/__init__.py
+    sed -i 's/client_cache: "ClientCache" | None = None/client_cache: "ClientCache | None" = None/' frappe-repo/frappe/__init__.py
+    git -C frappe-repo add frappe/__init__.py
+fi
 
 # Commit the patch locally so bench init (which clones) picks it up
 cd frappe-repo
 git config user.email "ci@example.com"
 git config user.name "CI"
-git add pyproject.toml frappe/utils/data.py frappe/__init__.py
-git commit -m "chore: relax python requirement and fix type hints"
+# Determine if there are changes to commit
+if ! git diff --cached --quiet; then
+    echo -e "${YELLOW}Committing patches locally...${NC}"
+    git commit -m "chore: relax python requirement and fix type hints"
+else
+    echo -e "${YELLOW}No changes to commit (patches might not have been applied or already applied).${NC}"
+fi
 cd ..
 
 # Initialize bench with patched Frappe
