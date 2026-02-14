@@ -92,6 +92,9 @@ bench set-config -g db_port 3306
 bench set-config -g root_login root
 bench set-config -g root_password root
 bench set-config -g admin_password admin
+bench set-config -g redis_cache redis://127.0.0.1:6379
+bench set-config -g redis_queue redis://127.0.0.1:6379
+bench set-config -g redis_socketio redis://127.0.0.1:6379
 
 # Get ERPNext
 # Manually clone and patch ERPNext to bypass Python 3.14 requirement
