@@ -45,12 +45,19 @@ sed -i 's/-> "UnicodeWithAttrs" | None/-> "UnicodeWithAttrs | None"/' frappe-rep
 # Verify data.py patch
 grep "md_to_html" frappe-repo/frappe/utils/data.py
 
+# Fix Frappe v16 type hint error in __init__.py (invalid syntax "Type" | None)
+echo -e "${YELLOW}Patching frappe/__init__.py type hint errors...${NC}"
+sed -i 's/cache: "RedisWrapper" | None = None/cache: "RedisWrapper | None" = None/' frappe-repo/frappe/__init__.py
+sed -i 's/client_cache: "ClientCache" | None = None/client_cache: "ClientCache | None" = None/' frappe-repo/frappe/__init__.py
+# Verify __init__.py patch
+grep "cache: \"RedisWrapper | None\"" frappe-repo/frappe/__init__.py
+
 # Commit the patch locally so bench init (which clones) picks it up
 cd frappe-repo
 git config user.email "ci@example.com"
 git config user.name "CI"
-git add pyproject.toml frappe/utils/data.py
-git commit -m "chore: relax python requirement and fix type hint"
+git add pyproject.toml frappe/utils/data.py frappe/__init__.py
+git commit -m "chore: relax python requirement and fix type hints"
 cd ..
 
 # Initialize bench with patched Frappe
