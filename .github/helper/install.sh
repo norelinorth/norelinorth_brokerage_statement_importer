@@ -56,6 +56,15 @@ while read -r file; do
     fi
 done
 
+# Fix uuid7 ImportError (Python 3.12 doesn't have uuid7 which is new in 3.13+)
+echo -e "${YELLOW}Checking for frappe/model/naming.py uuid7 import error...${NC}"
+if grep -q "from uuid import UUID, uuid7" frappe-repo/frappe/model/naming.py; then
+    echo -e "${YELLOW}Patching frappe/model/naming.py to backport uuid7...${NC}"
+    # Replace the import line with a try-except block to polyfill uuid7 using uuid4
+    sed -i 's/from uuid import UUID, uuid7/from uuid import UUID; try: from uuid import uuid7; except ImportError: from uuid import uuid4; uuid7 = uuid4/' frappe-repo/frappe/model/naming.py
+    git -C frappe-repo add frappe/model/naming.py
+fi
+
 # Commit the patch locally so bench init (which clones) picks it up
 cd frappe-repo
 git config user.email "ci@example.com"
