@@ -30,9 +30,15 @@ echo -e "${YELLOW}Skipping wkhtmltopdf (not required for CI tests)...${NC}"
 echo -e "${YELLOW}Installing bench...${NC}"
 pip install frappe-bench
 
-# Initialize bench
-echo -e "${YELLOW}Initializing bench...${NC}"
-bench init --skip-redis-config-generation --frappe-branch ${BRANCH_TO_CLONE} frappe-bench
+# Manually clone and patch Frappe to bypass Python 3.14 requirement in v16
+echo -e "${YELLOW}Cloning and patching Frappe ${BRANCH_TO_CLONE}...${NC}"
+git clone -b ${BRANCH_TO_CLONE} --depth 1 https://github.com/frappe/frappe.git frappe-repo
+# Relax python requirement from >=3.14 to >=3.12
+sed -i 's/requires-python = ">=3.14.*"/requires-python = ">=3.12"/' frappe-repo/pyproject.toml
+
+# Initialize bench with patched Frappe
+echo -e "${YELLOW}Initializing bench with patched Frappe...${NC}"
+bench init --skip-redis-config-generation --frappe-path $(pwd)/frappe-repo frappe-bench
 
 cd frappe-bench
 
