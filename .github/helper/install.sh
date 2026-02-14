@@ -40,23 +40,19 @@ echo -e "${YELLOW}Verifying pyproject.toml patch:${NC}"
 grep "requires-python" frappe-repo/pyproject.toml
 git -C frappe-repo add pyproject.toml
 
-# Fix Frappe v16 type hint error (invalid syntax "Type" | None)
-echo -e "${YELLOW}Checking for frappe/utils/data.py type hint error...${NC}"
-if grep -q "\"UnicodeWithAttrs\" | None" frappe-repo/frappe/utils/data.py; then
-    echo -e "${YELLOW}Patching frappe/utils/data.py...${NC}"
-    # Insert future import at the top
-    sed -i '1s/^/from __future__ import annotations\n/' frappe-repo/frappe/utils/data.py
-    git -C frappe-repo add frappe/utils/data.py
-fi
+# Fix Frappe v16 type hint errors (invalid syntax "Type" | None) by adding future annotations
+echo -e "${YELLOW}Scanning for files with invalid type hint syntax...${NC}"
 
-# Fix Frappe v16 type hint error in __init__.py (invalid syntax "Type" | None)
-echo -e "${YELLOW}Checking for frappe/__init__.py type hint errors...${NC}"
-if grep -q "cache: \"RedisWrapper\" | None = None" frappe-repo/frappe/__init__.py; then
-    echo -e "${YELLOW}Patching frappe/__init__.py...${NC}"
-    # Insert future import at the top
-    sed -i '1s/^/from __future__ import annotations\n/' frappe-repo/frappe/__init__.py
-    git -C frappe-repo add frappe/__init__.py
-fi
+# Find files containing string forward refs in union types (e.g. "Type" | None)
+# AND missing 'from __future__ import annotations'
+grep -rE --include="*.py" -l '(\s*"[a-zA-Z0-9_]+"\s*\||\|\s*"[a-zA-Z0-9_]+")' frappe-repo/frappe | \
+while read -r file; do
+    if ! grep -q "from __future__ import annotations" "$file"; then
+        echo "Patching $file..."
+        sed -i '1s/^/from __future__ import annotations\n/' "$file"
+        git -C frappe-repo add "$file"
+    fi
+done
 
 # Commit the patch locally so bench init (which clones) picks it up
 cd frappe-repo
