@@ -44,7 +44,6 @@ Noreli North Brokerage Statement Importer is a production-ready Frappe/ERPNext a
 - **Dependencies:** pdfplumber (auto-installed)
 - **Optional:** norelinorth_ai_assistant app (for AI parsing features)
 
-See [V16_COMPATIBILITY.md](V16_COMPATIBILITY.md) for full version compatibility details.
 
 ## Documentation
 
