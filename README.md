@@ -206,7 +206,6 @@ This app is built with **100% Frappe/ERPNext standards compliance**:
 ## Documentation
 
 - **[USER_GUIDE.md](USER_GUIDE.md)** - Comprehensive user guide
-- **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** - Developer API reference
 - **[CHANGELOG.md](CHANGELOG.md)** - Version history and release notes
 
 ## Support
