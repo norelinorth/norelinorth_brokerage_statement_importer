@@ -1,7 +1,7 @@
 # Noreli North Brokerage Statement Importer - User Guide
 
 **Version 1.2.0**
-**Last Updated:** January 11, 2025
+**Last Updated:** March 02, 2025
 
 ---
 
@@ -560,7 +560,4 @@ Open an issue on GitHub with:
 | E004 | "Provider not configured" | Select Statement Provider |
 
 ---
-
-**Document Version:** 1.1
-
 For latest documentation, visit: https://github.com/norelinorth/norelinorth_brokerage_statement_importer
