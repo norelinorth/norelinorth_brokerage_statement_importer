@@ -561,8 +561,6 @@ Open an issue on GitHub with:
 
 ---
 
-**Document Version:** 1.0
-**Last Updated:** January 11, 2025
-**Maintained by:** Noreli North
+**Document Version:** 1.1
 
 For latest documentation, visit: https://github.com/norelinorth/norelinorth_brokerage_statement_importer
