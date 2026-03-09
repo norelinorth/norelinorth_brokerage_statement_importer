@@ -16,7 +16,7 @@ from frappe.utils import get_files_path
 
 
 @frappe.whitelist()
-def extract_pdf_preview(statement_doc_name):
+def extract_pdf_preview(statement_doc_name: str):
 	"""
 	Extract preview data from uploaded PDF
 	Phase 1: Basic text and table extraction
@@ -230,7 +230,7 @@ def format_preview_html(extracted_data):
 
 
 @frappe.whitelist()
-def parse_transactions_with_ai(statement_doc_name):
+def parse_transactions_with_ai(statement_doc_name: str):
 	"""
 	Parse transactions using AI (Phase 2)
 
@@ -1353,7 +1353,7 @@ def validate_parsed_transactions(transactions, statement):
 
 
 @frappe.whitelist()
-def create_journal_entries(statement_doc_name):
+def create_journal_entries(statement_doc_name: str):
 	"""
 	Create Journal Entries from parsed transactions (Phase 3)
 
